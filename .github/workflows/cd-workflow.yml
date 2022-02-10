@@ -60,11 +60,10 @@ jobs:
       with:
         name: webpack artifacts
         path: public
-    - name: Build container image
-      uses: docker/build-push-action@v1
+    - name: Publish in heroku
+    - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
       with:
-        username: ${{github.actor}}
-        password: ${{secrets.GITHUB_TOKEN}}
-        registry: docker.pkg.github.com
-        repository: ssamuk/github-actions-for-packages/tic-tac-toe
-        tag_with_sha: true
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "uniikki" #Must be unique in Heroku
+          heroku_email: "samu.kaijansinkko@student.lab.fi"
+          usedocker: true
